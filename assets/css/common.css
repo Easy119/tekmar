@@ -2,7 +2,6 @@ body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, fo
     font-size: 16px;
     line-height: 1.6em;
     letter-spacing: 0px;
-    font-weight: 300;
     font-style: normal; };
 body, button, input, select, textarea { font: 12px / 1.5tahoma, arial, \5b8b\4f53; }
 h1, h2, h3, h4, h5, h6{
@@ -11,7 +10,6 @@ h1, h2, h3, h4, h5, h6{
     line-height: 1.5em;
     text-transform: none;
     letter-spacing: 0px;
-    font-weight: 100;
     font-style: normal;}
 address, cite, dfn, em, var { font-style: normal; }
 code, kbd, pre, samp { font-family: "微软雅黑", courier, monospace; }
@@ -27,5 +25,5 @@ button, input, select, textarea { font-size: 100%; }
 table { border-collapse:collapse; border-spacing:0; }
 .auto{margin: 0 auto};
 /* global */
-.content{padding: 15px 0;box-sizing: border-box;};
+.navTabar{box-sizing: border-box;padding-top: 15px!important;};
 .navbar-header {margin-right: 50px!important}

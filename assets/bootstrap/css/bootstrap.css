@@ -4177,8 +4177,9 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .navbar {
   position: relative;
   min-height: 50px;
-  margin-bottom: 20px;
+  margin-top: 15px!important;
   border: 1px solid transparent;
+  /* padding: 15px 0; */
 }
 @media (min-width: 768px) {
   .navbar {
@@ -4285,7 +4286,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .navbar-brand {
   float: left;
   height: 50px;
-  padding: 0 15px;
+  padding-right: 15px;;
   font-size: 18px;
   line-height: 20px;
   text-align: center;
