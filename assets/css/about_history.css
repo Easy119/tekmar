@@ -1,0 +1,84 @@
+.product-area-wrapper {
+    width: 100%;
+    padding: 40px 100px;
+}
+
+@media (max-width: 768px) {
+    .product-area-wrapper {
+        width: 100%;
+        padding: 40px 17px;
+    }
+}
+
+.product-body-wrapper .history-title {
+    /* height: 54px; */
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+}
+
+.history-title>h1 {
+    font-family: "proxima-nova";
+    font-size: 36px;
+    line-height: 1.5em;
+    text-transform: none;
+    letter-spacing: 0px;
+    font-weight: 100;
+    font-style: normal;
+    color: #777;
+}
+/* historyList */
+.history-item{
+    padding: 25px 0;
+    border-top: 1px solid #e8e8e8;
+}
+.history-time h2 {
+    color: #0073ab;
+    font-family: "proxima-nova";
+    line-height: 1.5em;
+    text-transform: none;
+    letter-spacing: 0px;
+    font-weight: 100;
+    font-style: normal;
+    font-size: 24px !important;
+} 
+.history-title .history-time{
+    color: #949494;
+}
+.history-des {
+    margin: 24px 0;
+}
+.history-des .history-img {
+    overflow: hidden;
+    margin-bottom: 17px;;
+    
+}
+.history-img > img {
+    max-width: 100%;
+    height: auto;
+}
+.history-info ul li{
+    list-style-type: disc;
+    font-family: "proxima-nova";
+    font-size: 14px;
+    line-height: 1.6em;
+    letter-spacing: 0px;
+    font-weight: 300;
+    font-style: normal;
+    color: #777;
+}
+.history-info ol li{
+    list-style-type: circle;
+    font-family: "proxima-nova";
+    font-size: 14px;
+    line-height: 1.6em;
+    letter-spacing: 0px;
+    font-weight: 300;
+    font-style: normal;
+    color: #777;
+}
+@media (max-width: 768px) {
+    .history-info p{
+        width: 100%;
+        margin: 24px 0;
+    }
+  }

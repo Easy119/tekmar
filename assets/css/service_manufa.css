@@ -1,0 +1,54 @@
+.product-area-wrapper {
+    width: 100%;
+    padding: 40px 0 40px 30px;
+    box-sizing: border-box;
+}
+.service-title {
+    margin-bottom: 12px;
+}
+.service-title>h1 {
+    font-family: "proxima-nova";
+    font-size: 36px;
+    line-height: 1.5em;
+    text-transform: none;
+    letter-spacing: 0px;
+    font-weight: 100;
+    font-style: normal;
+    color: #777;
+}
+
+
+@media (max-width: 768px) {
+    .product-area-wrapper {
+        width: 100%;
+        padding: 40px 17px;
+    }
+    .design-info p{
+        width: 100%;
+        margin: 24px 0;
+    }
+    .service-title>h1 {
+        font-family: "proxima-nova";
+        font-size: 24px;
+        line-height: 1.5em;
+        text-transform: none;
+        letter-spacing: 2px;
+        font-weight: 100;
+        font-style: normal;
+    }
+   
+}
+/* 文字介绍 */
+.service-info {
+    padding: 12px 0;
+}
+.service-info p{
+    margin: 24px 0;
+}
+.service-info ul {
+    padding-left: 40px;
+    margin: 16px 0 24px;
+}
+.service-info ul li{
+    list-style-type: disc;
+}

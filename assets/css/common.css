@@ -1,0 +1,29 @@
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, th, td { margin: 0; padding: 0;font-family: "proxima-nova";
+    font-size: 16px;
+    line-height: 1.6em;
+    letter-spacing: 0px;
+    font-style: normal; };
+body, button, input, select, textarea { font: 12px / 1.5tahoma, arial, \5b8b\4f53; }
+h1, h2, h3, h4, h5, h6{
+    font-family: "proxima-nova";
+    font-size: 36px;
+    line-height: 1.5em;
+    text-transform: none;
+    letter-spacing: 0px;
+    font-style: normal;}
+address, cite, dfn, em, var { font-style: normal; }
+code, kbd, pre, samp { font-family: "微软雅黑", courier, monospace; }
+small{ font-size: 12px; }
+ul, ol { list-style: none; }
+a { text-decoration: none; }
+a:hover { text-decoration: none; }
+sup { vertical-align: text-top; }
+sub{ vertical-align: text-bottom; }
+legend { color: #000; }
+fieldset, img { border: 0; }
+button, input, select, textarea { font-size: 100%; }
+table { border-collapse:collapse; border-spacing:0; }
+.auto{margin: 0 auto};
+/* global */
+.navTabar{box-sizing: border-box;padding-top: 15px!important;};
+.navbar-header {margin-right: 50px!important}
