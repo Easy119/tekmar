@@ -3555,7 +3555,7 @@ tbody.collapse.in {
   clear: both;
   font-weight: normal;
   line-height: 1.42857143;
-  color: #333;
+  color: #0073ab;
   white-space: nowrap;
 }
 .dropdown-menu > li > a:hover,
@@ -3990,6 +3990,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   position: absolute;
   right: -2px;
   top: 15px;
+  display: none;
 }
 @media (max-width: 768px) {
   .nav > li >  .delimiter{
@@ -4400,7 +4401,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 @media (min-width: 768px) {
   .navbar-nav {
-    float: left;
+    float: right;
     margin: 0;
   }
   .navbar-nav > li {

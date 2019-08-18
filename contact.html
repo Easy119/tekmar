@@ -6,21 +6,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>contact — Tekmar</title>
+    <link rel="shortcut icon" href="./assets/images/icon.jpg">
     <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="./assets/css/global.css">
     <link rel="stylesheet" href="./assets/css/common.css">
     <link rel="stylesheet" href="./assets/css/contact.css">
     <script src="./assets/bootstrap/js/jquery-3.4.1.min.js"></script>
     <script src="./assets/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript"
+        src="http://api.map.baidu.com/api?v=3.0&ak=ZGfr1jc5dRSCmz2KV0UipnQR0FNlfpPs"></script>
+    <style type="text/css">
+        #container {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            font-family: "微软雅黑";
+        }
+    </style>
 </head>
 
 <body>
     <div class="content">
         <!-- Nav -->
+        <!-- Nav -->
         <div class="container">
             <nav class="navbar navbar-default">
                 <div class="container-fluid">
-                    <!-- Brand and toggle get grouped for better mobile display -->
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
                             data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -34,33 +45,38 @@
                             <img src="./assets/images/logo.png" alt="" class="logo">
                         </a>
                     </div>
-                    <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">
-                            <li class="active"><a href="#">About <span class="sr-only">(current)</span></a><i
-                                    class="delimiter">/</i></li>
-                            <li>
-                                <a href="#">Sectors</a>
+                            <li class=" dropdown">
+                                <a href="#" data-toggle="dropdown">
+                                    关于我们
+                                    <span class="sr-only">(current)</span></a>
+                                <i class="delimiter">/</i>
+                                <ul class="dropdown-menu">
+                                    <li><a href="index.html">首页</a></li>
+                                    <li><a href="history.html">介绍</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" data-toggle="dropdown">服务</a>
+                                <ul class="dropdown-menu">
+                                    <li class=""><a href="cultivate.html">海缆保护系统设计服务</a></li>
+                                    <li><a href="agiltek.html">海洋工程项目分析服务</a></li>
+                                    <li><a href="ryder.html">岩土工程设计和咨询</a></li>
+                                    <li><a href="subsea.html">海上项目设备定制服务</a></li>
+                                </ul>
                                 <span class="delimiter">/</span>
                             </li>
                             <li>
-                                <a href="#">Services</a>
+                                <a href="products.html">产品</a>
                                 <span class="delimiter">/</span>
                             </li>
                             <li>
-                                <a href="#">Products</a>
+                                <a href="news.html">新闻</a>
                                 <span class="delimiter">/</span>
                             </li>
-                            <li>
-                                <a href="#">News</a>
-                                <span class="delimiter">/</span>
-                            </li>
-                            <li>
-                                <a href="#">Investors</a>
-                                <span class="delimiter">/</span>
-                            </li>
-                            <li>
-                                <a href="#">Contact</a>
+                            <li class="active">
+                                <a href="contact.html">联系我们</a>
                             </li>
                         </ul>
                     </div>
@@ -68,26 +84,31 @@
             </nav>
         </div>
         <!-- content -->
-        <div class="product-area-wrapper">
+        <div class="contact-area-wrapper">
             <!-- 文件内容 -->
-            <div class="product-body-wrapper container" id="page-body-wrapper">
-                <div class="">
-                    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+            <div class="contact-body-wrapper container" id="page-body-wrapper">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="contact-title">
-                            <h1>Getting in Touch</h1>
+                            <h1>联系我们</h1>
                         </div>
                         <div class="contact-des">
                             <div class="contact-info col-xs-12">
-                                <p>Tekmar's head office and 100,00sqft primary manufacturing facilities are located
-                                    across two sites in Newton Aycliffe in the north east of England. We have a further
-                                    engineering office in London, UK representation in the following regions:</p>
-                                <p><strong>Europe:</strong> Newton Aycliffe, London, Hamburg<br />
-                                    <strong>Asia:</strong> Shanghai, Busan, Singapore, Abu Dhabi<br />
-                                    <strong>North America:</strong> Boston</p>
+                                <p>上海泰铠码科技有限公司成立于2018年，是英国泰铠码能源（Tekmar Energy）的全资子公司</p>
+                                <p>我们为客户提供最先进的、全方位海缆保护解决方案，包括：</p>
+                                <ul>
+                                    <li>海缆保护系统（CPS）</li>
+                                    <li>海洋工程的技术咨询和开发</li>
+                                    <li>各类海洋工程、环境工程和水利工程施工咨询</li>
+                                    <li>人员培训</li>
+                                </ul>
+                            </div>
+                            <div class="contact-map col-xs-12">
+                                <div id="container"></div>
                             </div>
                         </div>
                         <div class="contact">
-                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                            <!-- <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
                                 <p>Name *</p>
                                 <div class="userName">
                                     <div>
@@ -112,60 +133,78 @@
                                     <textarea></textarea>
                                 </div>
                                 <div class="submitBtn">Submit</div>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 company_info">
-                                <h3>Head Office</h3>
+                            </div> -->
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 company_info">
+                                <h3>办公地址</h3>
                                 <p><i><strong>Tekmar</strong><br>
-                                        Park 2000<br>
-                                        Newton Aycliffe<br>
-                                        DL5 6AR<br>
-                                        United Kingdom</i></p>
-                                <p><strong>T</strong><i> +44 1325 379 520</i></p>
+                                        中国上海市静安区<br />
+                                        北京西路1227号4楼120室
+                                    </i></p>
+                                <p><strong>电话：</strong><i>&nbsp; +86 185 1628 7544</i></p>
+                                <p><strong>邮箱：</strong><i>&nbsp;richardhuang@tekmar.co.uk</i></p>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                        <div class="aside_right">
-                            <ul class="news">
-                                <li class="new_item">
-                                    <div class="new_img">
-                                        <img src="./assets/images/list.jpg" alt="" width="100%">
-                                    </div>
-                                    <div class="new_info">
-                                        <a class="new_title" href="#">Tekmar selected for Northwester 2</a>
-                                        <p class="new_timer">Mar 29, 2019</p>
-                                    </div>
-                                </li>
-                                <li class="new_item">
-                                    <div class="new_img">
-                                        <img src="./assets/images/list.jpg" alt="" width="100%">
-                                    </div>
-                                    <div class="new_info">
-                                        <a class="new_title" href="#">North East offshore wind cluster ready to deliver
-                                            on
-                                            Sector Deal, says Energi Coast</a>
-                                        <p class="new_timer">Mar 29, 2019</p>
-                                    </div>
-                                </li>
-                                <li class="new_item">
-                                    <div class="new_img">
-                                        <img src="./assets/images/list.jpg" alt="" width="100%">
-                                    </div>
-                                    <div class="new_info">
-                                        <a class="new_title" href="#">North East offshore wind cluster ready to deliver
-                                            on
-                                            Sector Deal, says Energi Coast</a>
-                                        <p class="new_timer">Mar 29, 2019</p>
-                                    </div>
-                                </li>
-                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
+            <!-- footer -->
         </div>
     </div>
+    <footer class="footer">
+        <p>
+            Copyright © 上海泰铠码科技 2019<br>
+            中国 上海市 静安区
+            <br>
+        </p>
+        <p>
+            <a href="#" target="_blank">Privacy Policy</a>
+        </p>
+    </footer>
 
 </body>
+<script type="text/javascript">
+    var map = new BMap.Map('container');
+    // 创建地图实例
+    var point = new BMap.Point(116.404, 39.915);
+    // 创建点坐标
+    map.centerAndZoom(point, 18);
+    // 初始化地图， 设置中心点坐标和地图级别
+    var marker = new BMap.Marker(point);
+    map.addOverlay(marker);
+    var mp = new BMap.Map("container");
+    mp.centerAndZoom(new BMap.Point(121.457541, 31.234933), 18);
+    mp.enableScrollWheelZoom();
+    var marker = new BMap.Marker(new BMap.Point(121.457541, 31.234933), 18);  // 创建标注
+    mp.addOverlay(marker);               // 将标注添加到地图中
+    marker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
+    var canvasLayer = new BMap.CanvasLayer({
+        update: update
+    });
+
+    function update() {
+        var ctx = this.canvas.getContext("2d");
+
+        if (!ctx) {
+            return;
+        }
+
+        ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+
+        var temp = {};
+        ctx.fillStyle = "rgba(50, 50, 255, 0.7)";
+        ctx.beginPath();
+        var data = [
+            new BMap.Point(116.297047, 39.979542),
+            new BMap.Point(116.321768, 39.88748),
+            new BMap.Point(116.494243, 39.956539)
+        ];
+
+        for (var i = 0, len = data.length; i < len; i++) {
+            var pixel = mp.pointToPixel(data[i]);
+            ctx.fillRect(pixel.x, pixel.y, 30, 30);
+        }
+    }
+    mp.addOverlay(canvasLayer);
+</script>
 
 </html>

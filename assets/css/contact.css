@@ -1,12 +1,12 @@
-.product-area-wrapper {
+.contact-area-wrapper {
     width: 100%;
     padding: 40px 100px;
 }
 
 @media (max-width: 768px) {
-    .product-area-wrapper {
+    .contact-area-wrapper {
         width: 100%;
-        padding: 40px 5px;
+        padding: 40px 0;
     }
 }
 
@@ -51,7 +51,15 @@
     letter-spacing: 0px;
     font-weight: 300;
     font-style: normal;
-    margin: 24px 0;
+    margin: 16px 0;
+}
+.contact-info ul {
+    padding-left: 25px;
+    box-sizing: border-box;
+    margin-bottom: 25px;
+}
+.contact-info ul li {
+    list-style-type: disc;
 }
 @media (max-width: 768px) {
     .contact-info p{
@@ -145,6 +153,7 @@
     letter-spacing: 0px;
     font-weight: 600;
     font-style: normal;
+    margin-top: 45px;
 }
 .company_info p{
     font-family: "proxima-nova";
@@ -155,4 +164,7 @@
     font-style: normal;
     color: #777;
     margin: 24px 0;
+}
+.contact-map {
+    height: 300px;
 }

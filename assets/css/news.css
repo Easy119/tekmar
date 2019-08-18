@@ -1,16 +1,16 @@
-.product-area-wrapper {
+.news-area-wrapper {
     width: 100%;
     padding: 40px 100px;
 }
 
 @media (max-width: 768px) {
-    .product-area-wrapper {
+    .news-area-wrapper {
         width: 100%;
-        padding: 40px 17px;
+        padding: 40px 0;
     }
 }
 
-.product-body-wrapper .news-title {
+.news-body-wrapper .news-title {
     height: 54px;
     margin-bottom: 20px;
 }

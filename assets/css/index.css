@@ -2,6 +2,7 @@
     width: 100%;
     height: 554px;
     background-color: rgba(82, 82, 82, .2);
+    margin-top: 15px;;
 }
 
 .banner-area-wrapper .page-title {
@@ -62,6 +63,34 @@
     width: 100%;
     height: 100%;
     background-color: #cdcdcd;
+}
+.article_title{
+    font-family: "proxima-nova";
+    font-size: 16px;
+    line-height: 1.6em;
+    letter-spacing: 0px;
+    font-weight: 300;
+    font-style: normal;
+    margin: 24px 0;
+    color: #777;
+}
+.article_des {
+    margin: 24px 0;
+    font-family: "proxima-nova";
+    font-size: 16px;
+    line-height: 1.6em;
+    letter-spacing: 0px;
+    font-weight: 300;
+    font-style: normal;
+    color: #777;
+}
+.article_des>ul {
+    padding-left: 40px;
+    width: 100%;
+    box-sizing: border-box;
+}
+.article_des>ul>li {
+    list-style-type: disc;
 }
 
 /* product */
