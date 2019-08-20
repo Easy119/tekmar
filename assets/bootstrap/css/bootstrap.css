@@ -4313,8 +4313,14 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
     height: 50px;
     line-height: 50px;
   }
-  .navbar-brand > img {
+  .navbar-brand > p {
     display: none;
+  }
+  .navbar-brand > img {
+    display: block;
+    margin: 0 auto;
+    width: 100px;
+    height: 40px;
   }
   .navbar > .container .navbar-brand,
   .navbar > .container-fluid .navbar-brand {
