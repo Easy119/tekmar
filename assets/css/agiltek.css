@@ -36,16 +36,18 @@
 .team {
     width: 100%;
     margin: 0 auto;
-    padding-top: 72px;
+    padding-top: 45px;
     box-sizing: border-box;
     margin-bottom: 3.8em;
 }
 .team h2{
     font-size:32px;
-    color: #218649;
-    line-height: 0.2em;
-    margin-bottom: 2.5em;
+    color: #777777;
+    line-height: 1em;
+    margin-bottom: 24px;
     text-align: left;
+    border-bottom: 1px solid #cdcdcd;
+    padding-bottom: 20px;
 }
 .team p{
   width: 100%;
@@ -63,7 +65,8 @@
     list-style-type: circle;
 }
 .company_product>li{
-    height: 550px;
+    height: 360px;
+    margin-bottom:45px;
 }
 .product_img {
     width: 100%;
@@ -81,7 +84,7 @@
     font-size: 18px;
     padding: 18px;
     line-height: 25px;
-    color: #218649;
+    color: #fff;
     position: absolute;
     left: 0;
     bottom: 0;
@@ -89,6 +92,7 @@
 }
 .product_des{
     text-align: left;
+    display: none;
 }
 .client-logo {
     width: 100%;

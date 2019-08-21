@@ -34,11 +34,10 @@ table { border-collapse:collapse; border-spacing:0; }
 }
 /* cyrillic-ext */
 @font-face {
-    font-family: 'PT Serif';
+    font-family: 'proxima-nova';
     font-style: italic;
     font-weight: 400;
-    src: local('PT Serif Italic'), local('PTSerif-Italic'), url(https://fonts.gstatic.com/s/ptserif/v10/EJRTQgYoZZY2vCFuvAFT_rC1chb-.woff2) format('woff2');
-    unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+    src: url(../fonts/other/SourceHanSansCN-Light.ttf)
   }
   /* cyrillic */
   @font-face {

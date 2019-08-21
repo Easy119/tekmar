@@ -16,12 +16,12 @@
 .banner-area-wrapper .page-title h1 {
     font-family: "proxima-nova";
     font-size: 62px;
-    line-height: 1.25em;
+    line-height: 1.8em;
     text-transform: none;
     letter-spacing: 1px;
     font-weight: 100;
     font-style: normal;
-    color: #000000;
+    color: #ffffff;
     text-align: center;
 }
 
@@ -98,7 +98,7 @@
 }
 
 .goods-item .goods-title {
-    color: #0073ab;
+    color: #000000;
     padding-top: 12px;
     line-height: 1.6em;
     letter-spacing: 0px;

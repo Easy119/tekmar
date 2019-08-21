@@ -17,7 +17,10 @@
 }
 
 .product-body-wrapper .goods-title {
-    height: 54px;
+    margin-bottom: 20px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #cdcdcd;
+    padding: 10px 0;
 }
 
 .goods-title>h1 {
@@ -28,6 +31,7 @@
     letter-spacing: 0px;
     font-weight: 100;
     font-style: normal;
+    color: #777777;
 }
 
 /* product list */
