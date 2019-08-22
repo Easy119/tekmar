@@ -90,7 +90,7 @@
                         </div>
                         <div>
                             <ul class="news-list">
-                                <li class="news-item">
+                                <li class="news-item" onclick="toDetail(1)">
                                     <div class="new-title">
                                         <h1>泰铠码成为全球最大海上风电场Hornsea二期供应商</h1>
                                         <time class="new-time">2019-08-05</time>
@@ -105,7 +105,7 @@
                                         </div>
                                     </div>
                                 </li>
-                                <li class="news-item">
+                                <li class="news-item" onclick="toDetail(2)">
                                     <div class="new-title">
                                         <h1>泰铠码科技助力全球风电行业女性领导力！</h1>
                                         <time class="new-time">2019-07-11</time>
@@ -144,4 +144,11 @@
 
 </body>
 <script src="./assets/js/common.js"></script>
+<script>
+// $(document).ready(function(){
+    function toDetail(id){
+        window.location.href="./detail.html?id="+id;
+    }
+// });
+</script>
 </html>
