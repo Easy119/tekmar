@@ -21,8 +21,8 @@
     window.UEDITOR_HOME_UR = "static/ueditor/";
     var URL = window.UEDITOR_HOME_URL || getUEBasePath();
     // var URL =  "/staitc/ueditor/";
-    console.log(URL);
-    console.log(window.UEDITOR_HOME_UR);
+    // console.log(URL);
+    // console.log(window.UEDITOR_HOME_UR);
     /**
      * 配置项主体。注意，此处所有涉及到路径的配置别遗漏URL变量。
      */

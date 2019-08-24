@@ -1,0 +1,12 @@
+
+.el-form-item__label {
+  width: 75px;
+  height: 40px;;
+  padding: 0;
+}
+.el-form-item__content {
+  width: calc(100% - 80px);
+}
+.ql-container {
+  height: 480px;;
+}

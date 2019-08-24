@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '@/views/home'
 import Detail from '@/views/detail'
-import User from '@/views/user'
+import List from '@/views/list'
 
 Vue.use(Router)
 
@@ -26,9 +26,9 @@ export default new Router({
           component: Detail
         },
         {
-          path: 'user',
-          name: 'User',
-          component: User
+          path: 'list',
+          name: 'List',
+          component: List
         }
       ]
     }
