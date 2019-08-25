@@ -8,18 +8,26 @@
         <el-form-item label="新闻描述">
           <el-input v-model="newsInfo.des" type="textarea"></el-input>
         </el-form-item>
+        <el-form-item label="缩略图">
+          <label for="inputer" class="inputer">
+            <i class="el-icon-close close" @click.prevent="deleteImg" v-if="newsInfo.news_img"></i>
+            <i class="el-icon-plus"  v-if="!newsInfo.news_img" style="font-size:24px;color:blue;"></i>
+            <img :src="newsInfo.news_img" v-else alt class="thumbnail" />
+          </label>
+          <input type="file" ref="inputer" @change="upload" id="inputer" />
+        </el-form-item>
       </el-form>
     </div>
     <div class="editor">
       <quill-editor
-        v-model="content"
+        v-model="newsInfo.content"
         ref="myQuillEditor"
         :options="editorOption"
         @blur="onEditorBlur($event)"
         @focus="onEditorFocus($event)"
         @change="onEditorChange($event)"
       ></quill-editor>
-      <button v-on:click="saveHtml">保存</button>
+      <el-button type="success" round @click="saveHtml">保存</el-button>
     </div>
   </div>
 </template>
@@ -29,9 +37,9 @@ import "quill/dist/quill.core.css";
 import "quill/dist/quill.snow.css";
 import "quill/dist/quill.bubble.css";
 import { quillEditor, Quill } from "vue-quill-editor";
-import { ImageDrop } from 'quill-image-drop-module'
+import { ImageDrop } from "quill-image-drop-module";
 import ImageResize from "quill-image-resize-module";
- Quill.register('modules/imageDrop', ImageDrop)
+Quill.register("modules/imageDrop", ImageDrop);
 Quill.register("modules/ImageResize", ImageResize);
 import axios from "axios";
 import api from "../util/env";
@@ -43,11 +51,13 @@ export default {
     return {
       labelPosition: "left",
       newsInfo: {
-        title: "",
+        news_title: "",
         des: "",
-        publish_time: ""
+        publist_time: "",
+        thumbnailFile:{},
+        content:'<p>新闻编辑</p>',
+        news_img:'' // 新闻缩略图
       },
-      content: `<p>新闻编辑</p>`,
       editorOption: {
         theme: "snow",
         modules: {
@@ -69,7 +79,7 @@ export default {
             [{ align: [] }], //对齐方式
 
             ["clean"], //清除字体样式
-            ["image"] //上传图片、上传视频
+            [""] //上传图片、上传视频
           ],
           imageDrop: true,
           imageResize: {
@@ -92,9 +102,9 @@ export default {
   created() {
     let new_id = this.$route.query.id;
     axios.get(`${api.dev_url}news/title/detail?id=${new_id}`).then(res => {
-      console.log("detail===>", res);
       if (res.data.flag) {
         this.newsInfo = res.data.msg;
+        this.newsInfo.news_img = api.dev_url + this.newsInfo.news_img ;
       }
     });
   },
@@ -106,8 +116,36 @@ export default {
     onEditorBlur() {}, // 失去焦点事件
     onEditorFocus() {}, // 获得焦点事件
     onEditorChange() {}, // 内容改变事件
-    saveHtml(event) {
-      console.log(this.content);
+    saveHtml() {
+      let fromdata = new FormData();
+      if(this.newsInfo.thumbnailFile){
+           delete this.newsInfo.news_img
+      }
+      for(let key in this.newsInfo) {
+        fromdata.append(key,this.newsInfo[key])
+      }
+      axios.post(`${api.dev_url}news/updated`,fromdata).then(res =>{
+        console.log(res)
+      })
+      
+    },
+    // 上传图片
+    upload() {
+      let fileInput = this.$refs.inputer;
+      let _this = this;
+      if (fileInput.files != null && fileInput.files[0] != null) {
+        var reader = new FileReader();
+        this.newsInfo.thumbnailFile = fileInput.files[0];
+        reader.readAsDataURL(fileInput.files[0]);
+        reader.onload = function(e) {
+          _this.newsInfo.news_img = reader.result;
+          fileInput.value = "";
+        };
+      }
+    },
+    deleteImg(){
+      this.newsInfo.news_img = '';
+      this.newsInfo.thumbnailFile = {};
     }
   }
 };
@@ -124,5 +162,29 @@ export default {
 }
 .ql-container {
   height: 480px;
+}
+.inputer {
+  display: block;
+  width: 120px;
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px dotted blueviolet;
+  position: relative;
+}
+.close {
+  font-size: 24px;
+  position: absolute;
+  right: -24px;
+  top: -12px;
+}
+#inputer {
+  display: none;
+}
+.thumbnail {
+  width: 120px;
+  height: 120px;
+  display: block;
 }
 </style>
