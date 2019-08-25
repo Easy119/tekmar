@@ -23,7 +23,7 @@
 </head>
 
 <body>
-    <div class="content" >
+    <div class="content">
         <!-- Nav -->
         <div class="container">
             <nav class="navbar navbar-default">
@@ -85,6 +85,9 @@
             <div class="news-body-wrapper container" id="page-body-wrapper">
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="news-title">
+                            <h1 onclick="toNews()">新闻</h1>
+                        </div>
                         <div id="app">
                             <div class="new-title">
                                 <h1>{{detailData.title}}</h1>
@@ -96,7 +99,7 @@
                                     <img src="./assets/images/news/news_2.jpg" alt="" v-if="id == 1">
                                 </div>
                                 <div class="new-info">
-                                    <p v-for="item in detailData.des" :key="item" >{{item}}</p>
+                                    <p v-for="item in detailData.des" :key="item">{{item}}</p>
                                     <!-- <p>泰铠码能源与全球最大海上风电运营商奥斯特（Ørsted）合作，将为Hornsea二期海上风电项目提供海缆保护系统。这批海缆保护系统将于泰铠码能源在英格兰东北部的工厂制造生产。泰铠码将为该项目的所有海底阵列电缆和输出电缆提供最新的第八代TekLink®海缆保护系统，包括346套海缆保护系统和30套钟型嘴夹具。</p>
                                     <p>
                                         Hornsea二期是Hornsea一期的姐妹项目，计划安装165台风力涡轮机，总容量为1.4GW。
@@ -133,26 +136,32 @@
 </body>
 <script src="./assets/js/common.js"></script>
 <script src="./assets/js/data.js"></script>
+<script>
+    function toNews(){
+        window.location.href = "./news.html"
+    }
+</script>
 <script src="./assets/js/vue.js"></script>
 <script>
-     var id = window.location.href.split("=")[1];
+    var id = window.location.href.split("=")[1];
     var vm = new Vue({
-        el:'#app',
-        data:{
-            detailData:{},
-            id:id
+        el: '#app',
+        data: {
+            detailData: {},
+            id: id
         },
         created() {
-            var dataList  = dataJson;
+            var dataList = dataJson;
             console.log(dataList)
-            if(id){
+            if (id) {
                 this.detailData = dataList[Number(id - 1)]
-                console.log( this.detailData)
+                console.log(this.detailData)
             } else {
                 window.history.go(-1);
+                console.log('a');
             }
         },
     })
 </script>
-
+ 
 </html>
