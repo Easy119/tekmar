@@ -14,27 +14,57 @@ let newTitle = async (ctx) => {
   }
 }
 let newDetail = async (ctx) => {
+  let { id } = ctx.method == "GET" ? ctx.request.query : ctx.request.body;;
+  try {
     let { id } = ctx.method == "GET" ? ctx.request.query : ctx.request.body;;
-    try {
-        let { id } = ctx.method == "GET" ? ctx.request.query : ctx.request.body;;
-        let sql =  `SELECT * FROM news_titles  WHERE id = ${parseInt(id)}`;
-        let result = await db.query(sql);
-        if (result) {
-            ctx.body = bodyFtl.ok(result[0])
-          } else {
-            ctx.body = bodyFtl._err()
-          }
-    } catch{
-        throw new Error()
+    let sql = `SELECT * FROM news_titles  WHERE id = ${parseInt(id)}`;
+    let result = await db.query(sql);
+    if (result) {
+      ctx.body = bodyFtl.ok(result[0])
+    } else {
+      ctx.body = bodyFtl._err()
     }
+  } catch{
+    throw new Error()
+  }
 }
-let create = async (ctx) =>{
+let create = async (ctx) => {
   try {
 
   } catch {
     throw new Error()
   }
 }
+
+let updated = async (ctx) => {
+  try {
+    let { content,des,id,news_title} = ctx.request.body;
+    let news_img , thumbnailFile,sql;
+    let publist_time = "2019-08-07 11:25:36";
+    if(ctx.request.files.thumbnailFile){
+      thumbnailFile = ctx.request.files.thumbnailFile;
+      news_img = getPath(thumbnailFile.path);
+      sql = `UPDATE news_titles set news_img = "upload/upload_${news_img}" ,content = "${content}" ,des = "${des}",news_title = "${news_title}",publist_time = "${publist_time}" where id = "${id}"`;
+    } else {
+      news_img = getPath(ctx.request.body.news_img);
+      sql = `UPDATE news_titles set news_img = "upload/upload_${news_img}" ,content = "${content}" ,des = "${des}",news_title = "${news_title}",publist_time = "${publist_time}" where id = "${id}"`;
+    }
+    let result = await db.query(sql);
+    if (result) {
+      ctx.body = {msg:"ok"}
+    } else {
+      ctx.body = bodyFtl._err()
+    }
+  } catch{
+    throw new Error()
+  }
+}
+let deleted = async (ctx) => {
+
+}
+function getPath(str){
+  return str.split("upload_")[1]
+}
 module.exports = {
-    newTitle,newDetail
+  newTitle, newDetail,updated
 }

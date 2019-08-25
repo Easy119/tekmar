@@ -4,5 +4,6 @@ module.exports = {
     // "POST/Lanter/sendResult" : Lanter.sendResult,
     "GET/news/title/list" : News.newTitle,
     "GET/news/title/detail" : News.newDetail,
+    'POST/news/updated': News.updated,
     'POST/upload': Img.upload
 }
