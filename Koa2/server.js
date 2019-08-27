@@ -8,6 +8,31 @@ const koaBodyparser = require("koa-bodyparser");
 const koaBody = require('koa-body');
 const koaStatic = require('koa-static')
 const path = require('path');
+server.use(cors({
+  origin: function (ctx) {
+    console.log(ctx)
+    // if (ctx.url === '/') {
+    //   return '*';
+    // }
+    return 'http://localhost:8080';
+  },
+  exposeHeaders: ['WWW-Authenticate', 'Server-Authorization'],
+  maxAge: 5,
+  credentials: true,
+  allowMethods: ['GET', 'POST', 'DELETE'],
+  allowHeaders: ['Content-Type', 'Authorization', 'Accept'],
+}));
+server.use(async (ctx, next) => {
+  ctx.set("Access-Control-Allow-Origin", "*")
+  // ctx.set("Access-Control-Allow-Headers", "X-Requested-With")
+  ctx.set("Content-Type", "text/plain");
+  ctx.set('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With ');
+  ctx.set("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS")
+  const start = new Date()
+  await next()
+  const ms = new Date() - start
+  console.log(`${ctx.method} ${ctx.url} - ${ms}ms`)
+})
 server.use(koaStatic(path.join(__dirname, './public')))
 // server.use(jsonp())
 server.use(koaBody({
@@ -31,19 +56,6 @@ server.use(koaBody({
 
 
 server.use(koaBodyparser())
-server.use(cors({
-  origin: function (ctx) {
-    if (ctx.url === '/test') {
-      return false;
-    }
-    return 'http://localhost:8080';
-  },
-  exposeHeaders: ['WWW-Authenticate', 'Server-Authorization'],
-  maxAge: 5,
-  credentials: true,
-  allowMethods: ['GET', 'POST', 'DELETE'],
-  allowHeaders: ['Content-Type', 'Authorization', 'Accept'],
-}));
 server.use(routerLib())
 server.use(router.routes())
 // 创建https服务器实例

@@ -11,7 +11,7 @@
         <el-form-item label="缩略图">
           <label for="inputer" class="inputer">
             <i class="el-icon-close close" @click.prevent="deleteImg" v-if="newsInfo.news_img"></i>
-            <i class="el-icon-plus"  v-if="!newsInfo.news_img" style="font-size:24px;color:blue;"></i>
+            <i class="el-icon-plus" v-if="!newsInfo.news_img" style="font-size:24px;color:blue;"></i>
             <img :src="newsInfo.news_img" v-else alt class="thumbnail" />
           </label>
           <input type="file" ref="inputer" @change="upload" id="inputer" />
@@ -27,7 +27,8 @@
         @focus="onEditorFocus($event)"
         @change="onEditorChange($event)"
       ></quill-editor>
-      <el-button type="success" round @click="saveHtml">保存</el-button>
+      <el-button type="success" round @click="saveHtml" v-if="news_id">编辑保存</el-button>
+      <el-button type="success" round @click="saveHtml" v-else>新增发布</el-button>
     </div>
   </div>
 </template>
@@ -54,10 +55,11 @@ export default {
         news_title: "",
         des: "",
         publist_time: "",
-        thumbnailFile:{},
-        content:'<p>新闻编辑</p>',
-        news_img:'' // 新闻缩略图
+        thumbnailFile: {},
+        content: "<p>新闻编辑</p>",
+        news_img: "" // 新闻缩略图
       },
+      news_id: "",
       editorOption: {
         theme: "snow",
         modules: {
@@ -79,7 +81,7 @@ export default {
             [{ align: [] }], //对齐方式
 
             ["clean"], //清除字体样式
-            [""] //上传图片、上传视频
+            ["image"] //上传图片、上传视频
           ],
           imageDrop: true,
           imageResize: {
@@ -100,13 +102,16 @@ export default {
     }
   },
   created() {
-    let new_id = this.$route.query.id;
-    axios.get(`${api.dev_url}news/title/detail?id=${new_id}`).then(res => {
-      if (res.data.flag) {
-        this.newsInfo = res.data.msg;
-        this.newsInfo.news_img = api.dev_url + this.newsInfo.news_img ;
-      }
-    });
+    let news_id = this.$route.query.id;
+    this.news_id = news_id;
+    if (news_id) {
+      axios.get(`${api.dev_url}news/title/detail?id=${news_id}`).then(res => {
+        if (res.data.flag) {
+          this.newsInfo = res.data.msg;
+          this.newsInfo.news_img = api.dev_url + this.newsInfo.news_img;
+        }
+      });
+    }
   },
   methods: {
     init() {},
@@ -118,16 +123,35 @@ export default {
     onEditorChange() {}, // 内容改变事件
     saveHtml() {
       let fromdata = new FormData();
-      if(this.newsInfo.thumbnailFile){
-           delete this.newsInfo.news_img
+      if (this.newsInfo.thumbnailFile) {
+        delete this.newsInfo.news_img;
       }
-      for(let key in this.newsInfo) {
-        fromdata.append(key,this.newsInfo[key])
+      for (let key in this.newsInfo) {
+        fromdata.append(key, this.newsInfo[key]);
       }
-      axios.post(`${api.dev_url}news/updated`,fromdata).then(res =>{
-        console.log(res)
-      })
-      
+      if (this.news_id) {
+        axios.post(`${api.dev_url}news/updated`, fromdata).then(res => {
+          console.log(res);
+          if (res.data.msg == "ok") {
+            this.$message({
+              message: "文章编辑成功！",
+              type: "success"
+            });
+            this.$router.push({ path: "/home/list" });
+          }
+        });
+      } else {
+        axios.post(`${api.dev_url}news/create`, fromdata).then(res => {
+          console.log(res);
+          if (res.data.msg == "ok") {
+            this.$message({
+              message: "新增发布成功！",
+              type: "success"
+            });
+            this.$router.push({ path: "/home/list" });
+          }
+        });
+      }
     },
     // 上传图片
     upload() {
@@ -143,8 +167,8 @@ export default {
         };
       }
     },
-    deleteImg(){
-      this.newsInfo.news_img = '';
+    deleteImg() {
+      this.newsInfo.news_img = "";
       this.newsInfo.thumbnailFile = {};
     }
   }

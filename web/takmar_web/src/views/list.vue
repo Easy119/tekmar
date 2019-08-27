@@ -1,5 +1,8 @@
 <template>
-  <div>
+  <div class="list">
+    <div class="add_news">
+      <el-button type="primary" @click="toRouter">新增文章</el-button>
+    </div>
     <el-table :data="tableData" style="width: 100%">
       <el-table-column type="expand">
         <template slot-scope="props">
@@ -11,7 +14,7 @@
               <span>{{ props.row.publist_time }}</span>
             </el-form-item>
             <el-form-item label="新闻描述">
-              <p class="news_des">{{ props.row.desc }}</p>
+              <p class="news_des">{{ props.row.des }}</p>
             </el-form-item>
             <el-form-item label="新闻图片" class="img_list">
               <img :src="props.row.news_img" class="new_img" />
@@ -43,18 +46,39 @@ export default {
     };
   },
   created(){
-    axios.get(`${api.dev_url}news/title/list`).then(res =>{
-      if(res.data.flag) {
-        this.tableData = res.data.msg
-      }
-    })
+    this.init()
   },
   methods: {
+    init(){
+  axios.get(`${api.dev_url}news/title/list`).then(res =>{
+      if(res.data.flag) {
+        this.tableData = res.data.msg.map(item =>{
+          item.news_img = api.dev_url + item.news_img;
+          return item
+        })
+      }
+    })
+    },
     handleEdit(row) {
       this.$router.push({path:'/home/detail',query:{id:row}})
     },
-    handleDelete(row) {
-      console.log(row)
+    handleDelete(id) {
+      console.log(id)
+      axios.get(`${api.dev_url}news/delete?id=${id}`).then(res =>{
+        console.log(res)
+      if(res.data.msg == 'ok') {
+        this.$message({
+              message: "文章删除成功！",
+              type: "success"
+          });
+          this.init()
+      } else {
+         this.$message.error('系统异常')
+      }
+    })
+    },
+    toRouter(){
+      this.$router.push({path:'/home/detail'})
     }
   }
 };
@@ -72,11 +96,21 @@ export default {
   margin-bottom: 0;
   width: 100%;
 }
+.list {
+  width:100%;
+  padding:0 40px;
+  box-sizing: border-box;
+}
 .news_des {
   word-break: normal;
   white-space: pre-warp;
   word-wrap: break-word;
   line-height: 40px;
+}
+.add_news {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
 .img_list {
   display: flex;
