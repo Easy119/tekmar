@@ -14,7 +14,7 @@ server.use(cors({
     // if (ctx.url === '/') {
     //   return '*';
     // }
-    return 'http://localhost:8080';
+    return 'http://localhost:80';
   },
   exposeHeaders: ['WWW-Authenticate', 'Server-Authorization'],
   maxAge: 5,
@@ -59,6 +59,6 @@ server.use(koaBodyparser())
 server.use(routerLib())
 server.use(router.routes())
 // 创建https服务器实例
-server.listen("8089", () => {
-  console.log("官网接口run 80s89")
+server.listen("80", () => {
+  console.log("官网接口run 80s")
 })
