@@ -43,15 +43,12 @@
                     </div>
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">
-                            <li class=" dropdown">
-                                <a href="#" data-toggle="dropdown">
-                                    公司历史
-                                    <span class="sr-only">(current)</span></a>
-                                <i class="delimiter">/</i>
-                                <ul class="dropdown-menu">
-                                    <li><a href="index.html">首页</a></li>
-                                    <li><a href="history.html">介绍</a></li>
-                                </ul>
+                            <li class="">
+                                <a href="index.html">首页</a>
+                                <span class="delimiter">/</span>
+                            </li>
+                            <li class="">
+                                <a href="history.html"> 公司历史</a>
                             </li>
                             <li class="dropdown">
                                 <a href="#" data-toggle="dropdown">服务</a>
@@ -90,7 +87,8 @@
                         </div>
                         <div>
                             <ul class="news-list" id="app">
-                                <li class="news-item" v-for="item in newsList" v-key="item.id" @click="toDetail(item.id)">
+                                <li class="news-item" v-for="item in newsList" v-key="item.id"
+                                    @click="toDetail(item.id)">
                                     <div class="new-title">
                                         <h1>{{item.news_title}}</h1>
                                         <time class="new-time">{{item.publist_time}}</time>
@@ -151,9 +149,9 @@
         </p>
         <p><img src="./assets/images/footer/weixin.png" alt="" class="footer_icon"></p>
         <div class="coder_show">
-                <span class="glyphicon glyphicon-remove close"></span>
-                <img src="./assets/images/footer/coder.jpg" alt="" class="fixed_icon">
-            </div>
+            <span class="glyphicon glyphicon-remove close"></span>
+            <img src="./assets/images/footer/coder.jpg" alt="" class="fixed_icon">
+        </div>
     </footer>
 
 </body>
@@ -161,36 +159,37 @@
 <script src="./assets/js/vue.js"></script>
 <script src="./assets/js/axios.js"></script>
 <script>
-// $(document).ready(function(){
-    function toDetail(id){
-        window.location.href="./detail.html?id="+id;
+    // $(document).ready(function(){
+    function toDetail(id) {
+        window.location.href = "./detail.html?id=" + id;
     }
 // });
 </script>
 <script>
- var vm = new Vue({
-     el:"#app",
-     data:{
-        newsList:[]
-     },
-     created() {
-         this.init()
-     },
-     methods: {
-        init(){
-            axios.get("http://47.105.62.242:8083/news/title/list").then(res=>{
-                if(res.data.flag){
-                    this.newsList = res.data.msg.map(item=>{
-                        item.news_img = 'http://47.105.62.242:8083/' + item.news_img
-                        return item
-                    })
-                }
-            })
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            newsList: []
         },
-        toDetail(id){
-            window.location.href="./detail.html?id="+id;
-        }
-     },
- })
+        created() {
+            this.init()
+        },
+        methods: {
+            init() {
+                axios.get("http://47.105.62.242:8083/news/title/list").then(res => {
+                    if (res.data.flag) {
+                        this.newsList = res.data.msg.map(item => {
+                            item.news_img = 'http://47.105.62.242:8083/' + item.news_img
+                            return item
+                        })
+                    }
+                })
+            },
+            toDetail(id) {
+                window.location.href = "./detail.html?id=" + id;
+            }
+        },
+    })
 </script>
+
 </html>

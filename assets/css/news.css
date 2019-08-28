@@ -33,6 +33,7 @@
 .new-title h1 {
     color: #382400;
     font-size: 24px !important;
+    font-family: 'SourceHanSansCN'
 } 
 .new-title .new-time{
     color: #949494;
@@ -51,11 +52,15 @@
 .new-info p{
     width: 100%;
     margin-bottom: 24px;
+    font-family: 'webfont';
+    color: #949494;
 }
 @media (max-width: 768px) {
     .new-info p{
         width: 100%;
         margin: 24px 0;
+        font-family: 'webfont';
+        color: #949494;
     }
   }
 .new-info a.inline-read-more{
