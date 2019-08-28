@@ -6,4 +6,10 @@ $(document).ready(function(){
         $(".coder_show").fadeOut("slow");
 
     })
+    $('.notice_us').mouseover(function(){
+        $('.show_us').fadeIn('slow')
+    })
+    $('.notice_us').mouseleave(function(){
+        $('.show_us').fadeOut('slow')
+    })
 });
