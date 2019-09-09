@@ -30,7 +30,7 @@
     padding: 25px 0;
     border-top: 1px solid #e8e8e8;
 }
-.news-title h1 {
+#news_title {
     color: #382400;
     font-size: 24px !important;
 } 
