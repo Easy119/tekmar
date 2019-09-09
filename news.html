@@ -13,6 +13,10 @@
     <link rel="stylesheet" href="./assets/css/news.css">
     <script src="./assets/bootstrap/js/jquery-3.4.1.min.js"></script>
     <script src="./assets/bootstrap/js/bootstrap.min.js"></script>
+    <!--[if lt IE 9]>
+               <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+               <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
     <style>
         @media (min-width: 768px) {
             .container {
@@ -89,7 +93,7 @@
                         </div>
                         <div>
                             <ul class="news-list" id="app">
-                                <li class="news-item" v-for="item in newsList" v-key="item.id"
+                                <!-- <li class="news-item" v-for="item in newsList" v-key="item.id"
                                     @click="toDetail(item.id)">
                                     <div class="new-title">
                                         <h1>{{item.news_title}}</h1>
@@ -103,7 +107,7 @@
                                             <p>{{item.des}}</p>
                                         </div>
                                     </div>
-                                </li>
+                                </li> -->
                                 <!-- <li class="news-item" onclick="toDetail(1)">
                                     <div class="new-title">
                                         <h1>泰铠码成为全球最大海上风电场Hornsea二期供应商</h1>
@@ -168,30 +172,48 @@
 // });
 </script>
 <script>
-    var vm = new Vue({
-        el: "#app",
-        data: {
-            newsList: []
-        },
-        created() {
-            this.init()
-        },
-        methods: {
-            init() {
-                axios.get("http://47.105.62.242:8083/news/title/list").then(res => {
-                    if (res.data.flag) {
-                        this.newsList = res.data.msg.map(item => {
+    $(document).ready(function () {
+        $.ajax({
+            url:'http://47.105.62.242:8083/news/title/list',
+            data:{},
+            type:"get",
+            dataType:'json',
+            success:function(res){
+                console.log(res)
+                if (res.flag) {
+                    var newsList = res.msg.map(item => {
                             item.news_img = 'http://47.105.62.242:8083/' + item.news_img
                             return item
-                        })
-                    }
-                })
+                    });
+                    var str = '';
+                    newsList.forEach(item => {
+                        str += `<li class="news-item" 
+                                    onclick="toDetail(${item.id})">
+                                    <div class="new-title">
+                                        <h1>${item.news_title}</h1>
+                                        <time class="new-time">${item.publist_time}</time>
+                                    </div>
+                                    <div class="new-des row">
+                                        <div class="new-img col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                            <img src="${item.news_img}" width="100%" alt="">
+                                        </div>
+                                        <div class="new-info col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                                            <p>${item.des}</p>
+                                        </div>
+                                    </div>
+                                </li>`
+                    });
+                    $('#app').html(str)
+                }
             },
-            toDetail(id) {
-                window.location.href = "./detail.html?id=" + id;
+            error:function(){
+
             }
-        },
-    })
+        });
+        function toDetail (id){
+                window.location.href = "./detail.html?id=" + id;
+        }
+    });
 </script>
 
 </html>

@@ -13,6 +13,10 @@
     <link rel="stylesheet" href="./assets/css/detail.css">
     <script src="./assets/bootstrap/js/jquery-3.4.1.min.js"></script>
     <script src="./assets/bootstrap/js/bootstrap.min.js"></script>
+    <!--[if lt IE 9]>
+               <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+               <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
     <style>
         @media (min-width: 768px) {
             .container {
@@ -88,15 +92,15 @@
                             <h1 onclick="toNews()">新闻</h1>
                         </div>
                         <div id="app">
-                            <div class="new-title">
-                                <h1>{{detailData.news_title}}</h1>
-                                <time class="new-time">{{detailData.publist_time}}</time>
+                            <div class="news-title">
+                                <h1 id="news_title"></h1>
+                                <time class="new-time" id="news_time"></time>
                             </div>
-                            <div class="new-des">
-                                <div class="new-img">
-                                    <img :src="detailData.news_img" alt="">
+                            <div class="news-des">
+                                <div class="news-img">
+                                    <img src="" alt="" id="news_img">
                                 </div>
-                                <div class="new-info" v-html="detailData.content">
+                                <div class="news-info"  id="news_info">
                                     <!-- <p>泰铠码能源与全球最大海上风电运营商奥斯特（Ørsted）合作，将为Hornsea二期海上风电项目提供海缆保护系统。这批海缆保护系统将于泰铠码能源在英格兰东北部的工厂制造生产。泰铠码将为该项目的所有海底阵列电缆和输出电缆提供最新的第八代TekLink®海缆保护系统，包括346套海缆保护系统和30套钟型嘴夹具。</p>
                                     <p>
                                         Hornsea二期是Hornsea一期的姐妹项目，计划安装165台风力涡轮机，总容量为1.4GW。
@@ -132,34 +136,33 @@
 
 </body>
 <script src="./assets/js/common.js"></script>
-<script src="./assets/js/axios.js"></script>
 <script>
     function toNews() {
         window.location.href = "./news.html"
     }
 </script>
-<script src="./assets/js/vue.js"></script>
 <script>
-    var id = window.location.href.split("=")[1];
-    var vm = new Vue({
-        el: '#app',
-        data: {
-            detailData: {},
-            id: id
-        },
-        created() {
-            if (id) {
-                axios.get(`http://47.105.62.242:8083/news/title/detail?id=${this.id}`).then(res => {
-                    if (res.data.flag) {
-                        this.detailData = res.data.msg;
-                        this.detailData.news_img = 'http://47.105.62.242:8083/' + this.detailData.news_img;
-                    }
-                })
-            } else {
-                window.history.go(-1);
-                console.log('a');
+    $(document).ready(function () {
+        var id = window.location.href.split("=")[1];
+        $.ajax({
+            url:"http://47.105.62.242:8083/news/title/detail?id="+id,
+            data:{},
+            type:'get',
+            dataType:'json',
+            success:function(res){
+                if (res.flag) {
+                    var detailData = res.msg;
+                    detailData.news_img = 'http://47.105.62.242:8083/' + detailData.news_img;
+                    $('#news_title').text(detailData.news_title);
+                    $('#news_time').text(detailData.publist_time);
+                    $("#news_img").attr("src",detailData.news_img )
+                    $('#news_info').html(detailData.content);
+                }
+            },
+            error:function(){
+
             }
-        },
+        })
     })
 </script>
 
